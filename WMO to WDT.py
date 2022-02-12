@@ -5,7 +5,8 @@ import struct
 try:
     droppedFile = sys.argv[1] #filepath
 except IndexError:
-    input("No file dropped. Press any key to exit.")
+    input("Error : No file dropped, to use this tool drag and drop your WMO file onto this file.")
+    raise Exception('Error : No file dropped, to use this tool drag and drop your WMO file onto this file.')
 
 file_name_with_extension = os.path.basename(droppedFile)
 
