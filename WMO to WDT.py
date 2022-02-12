@@ -19,9 +19,8 @@ file_extension = split_tup[1] # file extension
 
 if file_extension != ".wmo":
     print('File dropped is not a .wmo')
-    # raise Exception('File dropped is not a .wmo')
     input()
-
+    raise Exception('File dropped is not a .wmo') # todo : is there a way to keep the error message without closing window ? (using input for now)
 
 upper_extents = [0.0, 0.0, 0.0]
 lower_extents = [0.0, 0.0, 0.0]
@@ -34,12 +33,12 @@ with open(droppedFile, "rb") as f:
     if MOHD_magic != b'DHOM':
         if MOHD_magic == b'PGOM':
             print('You dropped a WMO group file.(xxx_000.wmo). You must drop the WMO root file instead (xxx.wmo) ')
-            # raise Exception('You dropped a WMO group file.(xxx_000.wmo). You must drop the WMO root file instead (xxx.wmo) ')
             input()
+            raise Exception('You dropped a WMO group file.(xxx_000.wmo). You must drop the WMO root file instead (xxx.wmo) ')
         else:
             print('WMO file is corrupted or an invalid version (currently untested with WOTLK+)')
-            # raise Exception('WMO file is corrupted or an invalid version (currently untested with WOTLK+)')
             input()
+            raise Exception('WMO file is corrupted or an invalid version (currently untested with WOTLK+)')
 
     f.read(40) # skip useless header data
     # maybe read flags for mwmo data ? 
